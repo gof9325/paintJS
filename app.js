@@ -4,6 +4,7 @@ const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
 const saveBtn = document.getElementById("jsSave");
+const clear = document.getElementById("jsClear");
 
 const INITIAL_COLOR = "#2c2c2c";
 const CANVAS_SIZE = 700;
@@ -61,7 +62,7 @@ function handleModeClick() {
   }
 }
 
-function handleCanvasClikc() {
+function handleCanvasClick() {
   if(filling){
       ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
@@ -79,12 +80,16 @@ function handleSaveClick() {
   link.click();
 }
 
+function handleClearClick() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
 if(canvas){
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
   canvas.addEventListener("mouseup", stopPainting);
   canvas.addEventListener("mouseleave", stopPainting);
-  canvas.addEventListener("click", handleCanvasClikc);
+  canvas.addEventListener("click", handleCanvasClick);
   canvas.addEventListener("contextmenu", handleCM);
 }
 
@@ -104,4 +109,8 @@ if(mode){
 
 if(saveBtn){
   saveBtn.addEventListener("click", handleSaveClick);
+}
+
+if(clear){
+  clear.addEventListener("click", handleClearClick);
 }
